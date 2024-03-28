@@ -4,9 +4,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import React from 'react';
+import React, { useContext } from 'react';
+import { DeleteContext } from './context/ContextProvider';
+import { Alert } from 'react-bootstrap';
 
 const Navbar = () => {
+  const { dlttask, setDlttask } = useContext(DeleteContext)
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -27,6 +30,11 @@ const Navbar = () => {
           </Toolbar>
         </AppBar>
       </Box>
+      {
+        dlttask ? <Alert variant="danger" onClose={() => setDlttask(false)} dismissible>
+          <Alert.Heading>Your task removed successfully</Alert.Heading>
+        </Alert>:""
+      }
       </>
   )
 }
